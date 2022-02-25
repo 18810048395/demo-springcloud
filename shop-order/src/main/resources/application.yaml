@@ -1,0 +1,36 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: service-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.111.10:8848
+    sentinel:
+      transport:
+        port: 9999 #跟控制台交流的端口,随意指定一个未使用的端口即可
+        client-ip: 192.168.111.5 #客户端地址
+        dashboard: 192.168.111.10:8858 # 指定控制台服务的地址
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.111.10:3306/demo_springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+#(ribbon默认是轮训，如果配置，则会按照配置规则进行路由)
+service-product: # 调用的提供者的名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#开启feign对于sentinel的支持(开启后，当服务报错后才会进入fallback)
+feign:
+  sentinel:
+    enabled: true
