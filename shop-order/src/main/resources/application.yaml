@@ -6,16 +6,16 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.111.10:8848
+        server-addr: 192.168.163.10:8848
     sentinel:
       transport:
         port: 9999 #跟控制台交流的端口,随意指定一个未使用的端口即可
-        client-ip: 192.168.111.5 #客户端地址
-        dashboard: 192.168.111.10:8858 # 指定控制台服务的地址
+        client-ip: 192.168.163.5 #客户端地址
+        dashboard: 192.168.163.10:8858 # 指定控制台服务的地址
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.111.10:3306/demo_springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://192.168.163.10:3306/demo_springcloud?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
     password: root
   jpa:
