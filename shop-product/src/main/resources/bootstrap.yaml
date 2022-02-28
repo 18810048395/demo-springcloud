@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: service-product
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.163.10:8848
+      config:
+        enabled: true
+        server-addr: 192.168.163.10:8848
+        shared-configs[0]:
+          data-id: common-biz.yaml
+          refresh: true

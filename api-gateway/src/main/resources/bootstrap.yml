@@ -1,0 +1,15 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.163.10:8848 # 将gateway注册到nacos
+      config:
+        enabled: true
+        server-addr: 192.168.163.10:8848
+        shared-configs[0]:
+          data-id: gateway.yaml
+          refresh: true

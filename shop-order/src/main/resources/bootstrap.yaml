@@ -1,0 +1,30 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: service-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.163.10:8848
+      config:
+        enabled: true
+        server-addr: 192.168.163.10:8848
+        shared-configs[0]:
+          data-id: common-biz.yaml
+          refresh: true
+    sentinel:
+      transport:
+        port: 9999 #跟控制台交流的端口,随意指定一个未使用的端口即可
+        client-ip: 192.168.163.5 #客户端地址
+        dashboard: 192.168.163.10:8858 # 指定控制台服务的地址
+
+#(ribbon默认是轮训，如果配置，则会按照配置规则进行路由)
+service-product: # 调用的提供者的名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#开启feign对于sentinel的支持(开启后，当服务报错后才会进入fallback)
+feign:
+  sentinel:
+    enabled: true
